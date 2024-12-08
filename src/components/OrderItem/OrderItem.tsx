@@ -17,7 +17,9 @@ export const OrderItem: React.FC<{ order: Order }> = ({ order }) => {
   return (
     <div className={classes.OrderItem}>
       <div className={classes.OrderItem__header}>
-        <h3 className={classes.OrderItem__id}>Order #{order.id.slice(0, 8)}</h3>
+        <h3 className={classes.OrderItem__id} data-testid="orderid">
+          Order #{order.id.slice(0, 8)}
+        </h3>
         <p className={classes.OrderItem__date}>{formatDate(order.orderDate)}</p>
         <StatusBadge status={order.status} />
       </div>

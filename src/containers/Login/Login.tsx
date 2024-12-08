@@ -15,10 +15,10 @@ const mockSuperAdmin = {
   password: "superadmin123!",
 };
 
-const mockVisualuizer = {
-  username: "visualizer1@example.com",
-  password: "vis1pass456@",
-};
+// const mockVisualuizer = {
+//   username: "visualizer1@example.com",
+//   password: "vis1pass456@",
+// };
 
 export const Login: React.FC = () => {
   const [formData, setFormData] = useState<LoginFormData>(mockSuperAdmin);
@@ -35,7 +35,7 @@ export const Login: React.FC = () => {
         [name]: value,
       }));
     },
-    []
+    [],
   );
 
   const togglePasswordVisibility = useCallback(() => {
@@ -59,7 +59,7 @@ export const Login: React.FC = () => {
       console.log("handleSubmit");
       handleLogin();
     },
-    [handleLogin]
+    [handleLogin],
   );
 
   return (
@@ -86,6 +86,7 @@ export const Login: React.FC = () => {
             />
             <button
               type="button"
+              name="show"
               onClick={togglePasswordVisibility}
               className={classes.Login__togglePassword}
             >
