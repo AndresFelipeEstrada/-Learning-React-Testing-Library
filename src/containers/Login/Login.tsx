@@ -56,7 +56,6 @@ export const Login: React.FC = () => {
   const handleSubmit = useCallback(
     (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      console.log("handleSubmit");
       handleLogin();
     },
     [handleLogin],
