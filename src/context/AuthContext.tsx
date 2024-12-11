@@ -17,7 +17,6 @@ export const SessionProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
   const [user, setUser] = useState<User | null>(null);
-
   const login = (user: User) => {
     setUser(user);
   };
