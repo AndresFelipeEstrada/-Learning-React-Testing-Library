@@ -26,6 +26,11 @@ vi.mock("../../services/getAuth", () => ({
   getAuth: vi.fn(),
 }));
 
+const getElementByPlaceHolderText = (text: string) =>
+  screen.getByPlaceholderText(text);
+
+const getElementByRole = (name: string) => screen.getByRole("button", { name });
+
 const setup = () => {
   const utils = render(
     <SessionProvider>
@@ -34,9 +39,9 @@ const setup = () => {
       </MemoryRouter>
     </SessionProvider>,
   );
-  const userNameInput = screen.getByPlaceholderText("Username");
-  const passwordInput = screen.getByPlaceholderText("Password");
-  const buttonLogin = screen.getByRole("button", { name: "Login" });
+  const userNameInput = getElementByPlaceHolderText("Username");
+  const passwordInput = getElementByPlaceHolderText("Password");
+  const buttonLogin = getElementByRole("Login");
 
   return {
     ...utils,
@@ -97,10 +102,12 @@ describe("<Login/>", () => {
     await handleLogin(mockLogin.username, mockLogin.password);
 
     await waitFor(() => {
+      
       expect(mockGetAuth).toHaveBeenCalledWith(
         mockLogin.username,
         mockLogin.password,
       );
+
       expect(mockNavigate).toHaveBeenCalledWith("/orders");
     });
   });
