@@ -1,23 +1,25 @@
-import { describe, it, expect } from "vitest";
-import { render, screen, fireEvent, act } from "@testing-library/react";
+import { describe, it, expect, beforeEach } from "vitest";
+import { render, screen, fireEvent } from "@testing-library/react";
 import { Contador } from "./Contador.tsx";
 
 describe("<Contador/ >", () => {
-  it("Deberia mostrear el valor inicial", () => {
+  beforeEach(() => {
     render(<Contador />);
-    const contador = screen.getByText("Contador: 0");
+  });
 
+  const getElementByText = (text: string) => screen.getByText(text);
+
+  it("Deberia mostrear el valor inicial", () => {
+    const contador = getElementByText("Contador: 0");
     expect(contador).toBeInTheDocument();
   });
 
   it("Deberia incrementar el contador", () => {
-    render(<Contador />);
-    const boton = screen.getByText("Incrementar");
-    act(() => {
-      fireEvent.click(boton);
-    });
+    const button = getElementByText("Incrementar");
 
-    const contador = screen.getByText("Contador: 1");
+    fireEvent.click(button);
+
+    const contador = getElementByText("Contador: 1");
 
     expect(contador).toBeInTheDocument();
   });
